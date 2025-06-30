@@ -36,7 +36,56 @@ otherTile.addEventListener("click", function() {
     window.location.href = "other.html";
 });
 
-function addRes() {
-    document.getElementById("addReservationForm").style = "display: flex; height: auto"
+function addResDrop() {
+    if (document.getElementById("addReservationForm").style.display === "flex") {
+        document.getElementById("addReservationForm").style = "display: none; height: 0px"
+    }
+    else {
+        document.getElementById("addReservationForm").style = "display: flex; height: auto"
+    }
 }
 
+function submitRes() {
+    const name = document.getElementById("resName").value;
+    const email = document.getElementById("resEmail").value;
+    const date = document.getElementById("resDate").value;
+    const time = document.getElementById("resTime").value;
+    const guests = document.getElementById("resGuests").value;
+
+    if (!name || !email || !date || !time || !guests) {
+        alert("Please fill in all fields.");
+        return;
+    }
+
+    // Here you would typically send the reservation data to the server
+    console.log("Reservation submitted:", { name, email, date, time, guests });
+    fetch('http://localhost:3000/reserve', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: name,
+            email: email,
+            date: date,
+            time: time,
+            guests: guests
+        })
+    }).then(response => {
+        if (response.avaliable && response.ok) {
+            alert("Reservation successfully submitted!");
+        } else if (!response.avaliable && response.ok) {
+            alert("No suitible tables avaliable");
+        } else {
+            alert("Failed to submit reservation. Please try again.");
+        }
+    }).catch(error => {
+        console.error("Error submitting reservation:", error);
+        alert("An error occurred while submitting your reservation. Please try again later.");
+    }
+    );
+
+    // Reset form and hide it
+    document.getElementById("addReservationForm").reset();
+    addResDrop();
+}

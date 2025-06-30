@@ -60,6 +60,22 @@ app.post('/order', (req, res) => {
     });
 });
 
+app.post('/reserve', (req, res) => {
+  const reservation = req.body;
+  if (!reservation || !reservation.name || !reservation.email || !reservation.date || !reservation.time || !reservation.guests) {
+    return res.status(400).json({ error: 'Invalid reservation data' });
+  }
+
+  addReservation(reservation)
+    .then(() => {
+      res.status(201).json({ message: 'Successfully reserved'})
+    })
+    .catch((err) => {
+      console.error('Error reserving table:', err)
+      res.status(500).json({ error: 'Failed to reserve table'})
+    });
+});
+
 // Start the server
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
@@ -110,3 +126,60 @@ function placeOrder(order) {
     });
   });
 }
+
+function addReservation(Reservation) {
+  return new Promise((resolve, reject) => {
+    const { name, email, date, time, guests } = Reservation;
+
+    findAvailableTable(date, time, guests)
+      .then((available, table) => {
+        if (!available) {
+          reject(new Error('No suitable tables available'));
+          return;
+        }
+        else {
+          return insertReservation(table, name, email, date, time, guests);
+        }
+      });
+  })
+  .then(() => {
+    resolve();
+  })
+  .catch((err) => {
+    console.error('Error adding reservation:', err);
+    reject(err);
+  });
+}
+
+function findAvailableTable(date, time, guests) {
+  return new Promise((resolve, reject) => {
+    const query = 'SELECT table_number FROM table_avaliability WHERE seats >= ? AND table_number NOT IN (SELECT table_number FROM reservations WHERE reservation_date = ? AND reservation_time = ?)';
+    connection.query(query, [guests, date, time], (err, results) => {
+      if (err) {
+        console.error('Error finding available table:', err);
+        reject(err);
+        return;
+      }
+      if (results.length > 0) {
+        resolve(true, results[0].table_number);
+      } else {
+        resolve(false, null);
+      }
+    });
+  });
+}
+
+function insertReservation(table, name, email, date, time, guests) {
+  return new Promise((resolve, reject) => {
+    const reservationQuery = 'INSERT INTO reservations (table_number, customer_name, customer_email, reservation_date, reservation_time, party_size) VALUES (?, ?, ?, ?, ?, ?)';
+    connection.query(reservationQuery, [table, name, email, date, time, guests], (err) => {
+      if (err) {
+        console.error('Error adding reservation:', err);
+        reject(err);
+        return;
+      }
+      resolve();
+    });
+  });
+}
+
