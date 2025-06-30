@@ -1,0 +1,150 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+#header {
+    background-color: #ff6f61;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    align-items: center;
+}
+
+#header p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#header h1 {
+    margin: 5px 0 0;
+    font-size: 60px;
+}
+
+#resteraunt {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#account {
+    background-color: #ff6f61;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 18px;
+}
+
+#account a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0 20px;
+}
+
+/* Menu Section */
+#menu {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.item {
+    width: 40%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: flex;
+    justify-content: space-between;
+}
+
+.item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.item img {
+    max-height: 100%;
+    width: auto;
+    border-radius: 8px;
+}
+
+.addBtn {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.addBtn:hover {
+    background-color: #e55b50;
+}
+.addBtn:active {
+    background-color: #d44c41;
+}
+
+@media screen and (max-aspect-ratio: 4/3) {
+    #menu {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .item {
+        width: 90%;
+    }
+    .catagory {
+        width: 80%;
+    }
+}
+
+/* Footer Styles */
+#footer {
+    background-color: #ff6f61;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+#footer p {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#footer a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0 20px;
+    font-size: 24px;
+}
+
+#contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    width: 80%;
+    padding: 20px;
+}
+
+#contactUs {
+    font-size: 32px;
+}

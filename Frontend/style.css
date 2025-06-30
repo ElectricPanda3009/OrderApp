@@ -194,3 +194,43 @@ body {
 #contactUs {
     font-size: 32px;
 }
+
+#addReservationForm {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    transition: ease-in-out;
+    transition-duration: 0.3s;
+    justify-content: center;
+}
+
+#addReservationForm label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+#addReservationForm input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#addReservationForm button {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#addReservationForm button:hover {
+    background-color: #ff5a47;
+}

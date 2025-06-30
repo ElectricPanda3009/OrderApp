@@ -13,8 +13,7 @@
             <div id="resteraunt">
                 <p>Resteraunt name</p>
                 <div id="account">
-                    <a href="">Login</a>
-                    <a href="">Sign Up</a>
+                    <a href="">Admin Login</a>
                 </div>
             </div>
             
@@ -66,10 +65,22 @@
 
             <div class="reservation">
                 <h2>Reservation</h2>
-                <p>Book a table or check existing booking</p>
-                <button id="bookTable">Book Now</button>
-                <button id="checkReserve">Check reservation</button>
+                <p>Book a table in advance to ensure we can accomidate</p>
+                <button id="bookTable" onclick="addRes()">Book Now</button>
+                <div id="addReservationForm" style="display: none; height: 0px">
+                    <form>
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+                        <label for="date">Date:</label>
+                        <input type="date" id="date" name="date" required>
+                        <label for="time">Time:</label>
+                        <input type="time" id="time" name="time" required>
+                        <label for="people">Number of people:</label>
+                        <input type="number" id="people" name="people" min="1" required>
+                        <button type="submit">Submit</button>
+                    </form>
 
+                </div>
             </div>
 
         </div>

@@ -12,27 +12,31 @@ console.log(specialsTile);
 
 //Catagory tiles event listeners
 specialsTile.addEventListener("click", function() {
-    window.location.href = "specials/index.html";
+    window.location.href = "specials.html";
 });
 appetizersTile.addEventListener("click", function() {
-    window.location.href = "appetizers/index.html";
+    window.location.href = "appetizers.html";
 });
 mainsTile.addEventListener("click", function() {
-    window.location.href = "mains/index.html";
+    window.location.href = "mains.html";
 });
 burgersTile.addEventListener("click", function() {
-    window.location.href = "burgers/index.html";
+    window.location.href = "burgers.html";
 });
 pizzasTile.addEventListener("click", function() {
-    window.location.href = "pizzas/index.html";
+    window.location.href = "pizzas.html";
 });
 drinksTile.addEventListener("click", function() {
-    window.location.href = "drinks/index.html";
+    window.location.href = "drinks.html";
 });
 dessertsTile.addEventListener("click", function() {
-    window.location.href = "desserts/index.html";
+    window.location.href = "desserts.html";
 });
 otherTile.addEventListener("click", function() {
-    window.location.href = "other/index.html";
+    window.location.href = "other.html";
 });
+
+function addRes() {
+    document.getElementById("addReservationForm").style = "display: flex; height: auto"
+}
 
