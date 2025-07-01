@@ -43,6 +43,19 @@ app.get('/menu', (req, res) => {
 
 });
 
+app.get('/items', (req, res) => {
+  let items = [];
+  const query = 'SELECT * FROM menu';
+  connection.query(query, (err, results) => {
+    if (err) {
+      console.error('Error fetching items:', err);
+      return res.status(500).json({ error: 'Failed to fetch items' });
+    }
+    items = results;
+    res.status(200).json(items);
+  });
+});
+
 app.post('/order', (req, res) => {
   const order = req.body;
 
@@ -67,12 +80,15 @@ app.post('/reserve', (req, res) => {
   }
 
   addReservation(reservation)
-    .then(() => {
-      res.status(201).json({ message: 'Successfully reserved'})
+    .then((ok, table) => {
+      if (!table) {
+        return res.status(400).json({ available: false, ok: ok, message: 'No suitable tables available' });
+      }
+      res.status(201).json({ available: true, ok: ok, table: table, message: 'Reservation added successfully' });
     })
     .catch((err) => {
-      console.error('Error reserving table:', err)
-      res.status(500).json({ error: 'Failed to reserve table'})
+      console.error('Error reserving table:', err);
+      res.status(500).json({ error: 'Failed to reserve table' });
     });
 });
 
@@ -142,8 +158,8 @@ function addReservation(Reservation) {
         }
       });
   })
-  .then(() => {
-    resolve();
+  .then((ok, table) => {
+    resolve(ok, table);
   })
   .catch((err) => {
     console.error('Error adding reservation:', err);

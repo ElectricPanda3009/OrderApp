@@ -1,0 +1,118 @@
+/* Admin Panel Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+#admin-panel {
+    background-color: #fff;
+    width: 80%;
+    margin: 40px auto;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    padding: 40px 30px;
+}
+
+#admin-panel h1 {
+    color: #ff6f61;
+    text-align: center;
+    font-size: 48px;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+}
+
+#menu-management, #reservation-management {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    padding: 30px 20px;
+    margin-bottom: 30px;
+}
+
+#menu-management h2,
+#reservation-management h2 {
+    color: #ff6f61;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+#menu-management p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+#menu-management button {
+    background-color: #ff6f61;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 28px;
+    font-size: 18px;
+    margin-right: 16px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+}
+
+#menu-management button:hover {
+    background-color: #ff5a47;
+    color: #fff;
+}
+
+#reservation-management {
+    margin-top: 20px;
+}
+
+@media (max-width: 900px) {
+    #admin-panel {
+        width: 96%;
+        padding: 20px 5px;
+    }
+    #menu-management, #reservation-management {
+        padding: 18px 5px;
+    }
+    #admin-panel h1 {
+        font-size: 32px;
+    }
+    #menu-management h2,
+    #reservation-management h2 {
+        font-size: 24px;
+    }
+}
+
+#add-item-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+#add-item-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #000;
+}
+#add-item-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#add-item-form button {
+    background-color: #ff6f61;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+#add-item-form button:hover {
+    background-color: #ff5a47;
+}  

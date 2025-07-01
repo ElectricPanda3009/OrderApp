@@ -1,11 +1,27 @@
 let items = [];
-let cart = localStorage.getItem("cart");
+let cart = [];
 let cartTotal = 0;
 category = window.location.pathname.split('/').pop().replace('.html', ''); // Get category from URL
 
 document.addEventListener('DOMContentLoaded', () => {
     loadItems();
 });
+
+// Function to load items based on the category from the URL
+// This function fetches items from the server based on the category and displays them
+// It also initializes the cart from localStorage if available
+function initializeCart() {
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+        cart = JSON.parse(storedCart);
+        cartTotal = cart.reduce((total, item) => total + Number(item.price), 0).toFixed(2);
+    } else {
+        cart = [];
+        cartTotal = 0;
+    }
+    updateCart();
+}
+initializeCart();
 
 function loadItems() {
     fetch(`http://localhost:3000/menu?category=${category}`, {
@@ -70,11 +86,10 @@ function updateCart() {
     });
 
     cartTotal = cartTotal.toFixed(2)
-
     console.log(cartTotal);
 
     cartIcon.innerText = `Cart: $${cartTotal}`
 
-    localStorage.setItem("cart", cart)
+    localStorage.setItem("cart", JSON.stringify(cart))
 }
 

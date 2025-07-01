@@ -5,7 +5,7 @@ const mainsTile = document.getElementById("mains");
 const burgersTile = document.getElementById("burgers");
 const pizzasTile = document.getElementById("pizzas");
 const drinksTile = document.getElementById("drinks");
-const dessertsTile = document.getElementById("desserts");
+const dessertsTile = document.getElementById("dessert");
 const otherTile = document.getElementById("other");
 
 console.log(specialsTile);

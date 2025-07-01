@@ -26,7 +26,7 @@ body {
     font-size: 60px;
 }
 
-#resteraunt {
+#restaurant {
     display: flex;
     justify-content: space-between;
     width: 80%;

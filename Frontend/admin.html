@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div id="admin-panel">
+        <h1>Admin Panel</h1>
+        <div id="menu-management">
+            <h2>Menu Management</h2>
+            <p>Manage your restaurant's menu items here.</p>
+            <button id="add-item-button">Add New Item</button>
+
+            <form id="add-item-form" style="display: none;">
+                <h3>Add New Menu Item</h3>
+                <div>
+                    <label for="item-name">Item Name:</label>
+                    <input type="text" id="item-name" name="item-name" required>
+                </div>
+                <div>
+                    <label for="item-price">Price:</label>
+                    <input type="number" id="item-price" name="item-price" required>
+                </div>
+                <div>
+                    <label for="item-description">Description:</label>
+                    <textarea id="item-description" name="item-description" rows="4" required></textarea>
+                </div>
+                <div>
+                    <label for="item-image">Image:</label>
+                    <input type="file" id="item-image" name="item-image" required>
+                </div>
+                <div>
+                    <label for="item-category">Category:</label>
+                    <select id="item-category" name="item-category">
+                        <option value="specials">Specials</option>
+                        <option value="appetizers">Appetizers</option>
+                        <option value="mains">Mains</option>
+                        <option value="burgers">Burgers</option>
+                        <option value="pizzas">Pizzas</option>
+                        <option value="drinks">Drinks</option>
+                        <option value="desserts">Desserts</option>
+                    </select>
+
+                    <button type="submit" id="submit-item-button">Add Item</button>
+                </div>
+            </form>
+
+            <div id="menu-items">
+                <h3>Menu Items</h3>
+                <ul id="item-list">
+                    
+                
+                </ul>
+            </div>
+        </div>
+        <div id="reservation-management">
+            <h2>Reservation Management</h2>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
