@@ -51,6 +51,8 @@ function submitRes() {
     const date = document.getElementById("resDate").value;
     const time = document.getElementById("resTime").value;
     const guests = document.getElementById("resGuests").value;
+    
+    console.log("Submitting reservation:", { name, email, date, time, guests });
 
     if (!name || !email || !date || !time || !guests) {
         alert("Please fill in all fields.");
@@ -71,19 +73,20 @@ function submitRes() {
             time: time,
             guests: guests
         })
-    }).then(response => {
-        if (response.avaliable && response.ok) {
-            alert("Reservation successfully submitted!");
-        } else if (!response.avaliable && response.ok) {
-            alert("No suitible tables avaliable");
+        .then(response => response.json())
+        .then(data => {
+            if (data.available && data.ok) {
+                alert("Reservation successfully submitted!");
+            } else if (!data.available && data.ok) {
+                alert("No suitable tables available");
         } else {
             alert("Failed to submit reservation. Please try again.");
         }
     }).catch(error => {
         console.error("Error submitting reservation:", error);
         alert("An error occurred while submitting your reservation. Please try again later.");
-    }
-    );
+    })
+    });
 
     // Reset form and hide it
     document.getElementById("addReservationForm").reset();
