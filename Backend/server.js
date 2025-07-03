@@ -145,7 +145,7 @@ app.get('/reservations', (req, res) => {
   });
 });
 
-app.get('deleteReservation', (req, res) => {
+app.get('/deleteReservation', (req, res) => {
   const reservationId = req.query.id;
   if (!reservationId) {
     return res.status(400).json({ error: 'Invalid reservation ID' });
@@ -159,7 +159,7 @@ app.get('deleteReservation', (req, res) => {
     if (result.affectedRows === 0) {
       return res.status(404).json({ error: 'Reservation not found' });
     }
-    res.status(200).json({ message: 'Reservation deleted successfully' });
+    res.status(200).json({ message: 'Reservation deleted successfully', ok: true });
   });
 });
 

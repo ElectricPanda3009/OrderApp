@@ -97,12 +97,13 @@ function loadReservations() {
     })
         .then(response => response.json())
         .then(reservations => {
+            console.log(reservations);
             const reservationList = document.getElementById("reservation-list");
             reservationList.innerHTML = ""; // Clear previous reservations
             reservations.forEach(reservation => {
                 const listItem = document.createElement("li");
                 listItem.innerHTML = `
-                    <span>${reservation.name} - ${reservation.date} at ${reservation.time}</span>
+                    <span>${reservation.customer_name} - ${reservation.reservation_date.substring(0, 10)} at ${reservation.reservation_time} - ${reservation.customer_email}</span>
                     <button class="delete-reservation" onclick="deleteReservation(${reservation.id})">Delete</button>
                 `;
                 reservationList.appendChild(listItem);

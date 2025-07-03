@@ -11,16 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
 // This function fetches items from the server based on the category and displays them
 // It also initializes the cart from localStorage if available
 function initializeCart() {
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-        cart = JSON.parse(storedCart);
-        cartTotal = cart.reduce((total, item) => total + Number(item.price), 0).toFixed(2);
-    } else {
-        cart = [];
-        cartTotal = 0;
-    }
+    
+    cart = [];
+    cartTotal = 0;
+
+
+
+    console.log('Initialized cart:', cart);
     updateCart();
 }
+
 initializeCart();
 
 function loadItems() {
@@ -78,6 +78,11 @@ function addToCart(id) {
 }
 
 function updateCart() {
+
+    if (cart.length === 0) {
+        document.getElementById("cart").innerText = "Cart: $0.00";
+        return; // Exit if cart is empty
+    }
     var cartIcon = document.getElementById("cart");
 
     cartTotal = 0;
@@ -91,5 +96,13 @@ function updateCart() {
     cartIcon.innerText = `Cart: $${cartTotal}`
 
     localStorage.setItem("cart", JSON.stringify(cart))
+}
+
+function clearCart() {
+    cart = [];
+    cartTotal = 0;
+    updateCart();
+    localStorage.removeItem("cart");
+    alert("Cart cleared!");
 }
 

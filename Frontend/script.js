@@ -73,11 +73,12 @@ function submitRes() {
             time: time,
             guests: guests
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.available && data.ok) {
-                alert("Reservation successfully submitted!");
-            } else if (!data.available && data.ok) {
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.available && data.ok) {
+            alert("Reservation successfully submitted!");
+        } else if (!data.available && data.ok) {
                 alert("No suitable tables available");
         } else {
             alert("Failed to submit reservation. Please try again.");
@@ -86,7 +87,7 @@ function submitRes() {
         console.error("Error submitting reservation:", error);
         alert("An error occurred while submitting your reservation. Please try again later.");
     })
-    });
+
 
     // Reset form and hide it
     document.getElementById("addReservationForm").reset();
